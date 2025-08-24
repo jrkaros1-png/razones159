@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>159 Razones por las que te quiero 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: "Georgia", serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  background-image: url('https://www.lalbacaravaning.com/wp-content/uploads/2022/02/AdobeStock_280800797-scaled-1.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(255,255,255,0.2);
+  z-index: 0;
+}
+
+/* Pantalla de presentación */
+#intro {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(255, 228, 225, 0.95);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:50;
+  text-align:center;
+  transition: opacity 0.8s ease;
+}
+
+#intro h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size:3rem;
+  color:#b71c1c;
+}
+
+#intro p {
+  font-size:1.5rem;
+  margin-top:1rem;
+  max-width: 90%;
+  line-height:1.5;
+}
+
+#intro button {
+  margin-top:2rem;
+  padding:1rem 2rem;
+  font-size:1.2rem;
+  background:#b71c1c;
+  color:white;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+/* Libro */
+.book {
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
+  position: relative;
+  margin: 2rem auto;
+  z-index:1;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3), inset 0 0 15px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  background:#fdf6e3;
+  transition: opacity 0.8s ease;
+  opacity: 1;
+}
+
+.page h1 {
+  color: #b71c1c;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: "Great Vibes", cursive;
+}
+
+.page p {
+  font-size: 2.5rem;  
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-family: "Great Vibes", cursive;
+  padding: 0 1rem;
+  word-wrap: break-word;
+}
+
+.book button {
+  align-self: center;
+  margin-top: auto;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  background: #b71c1c;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.book button:hover { background: #7f0000; }
+
+.floating-photo {
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  max-width: 150px;
+  height: auto;
+  transition: all 1s ease;
+  opacity: 0;
+}
+
+/* Emojis de lluvia */
+.emoji {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  animation: fall linear infinite;
+  z-index: 100;
+  top: -50px; 
+}
+
+@keyframes fall {
+  0% { transform: translateY(0px) rotate(0deg); opacity:1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity:0.8; }
+}
+
+/* Índice compacto y transparente */
+#indexContainer {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 5px;
+  z-index: 50;
+  display:none; 
+}
+#indexContainer::-webkit-scrollbar {
+  width: 5px;
+}
+#indexContainer::-webkit-scrollbar-thumb {
+  background-color: #b71c1c;
+  border-radius: 10px;
+}
+#indexContainer button {
+  display: block;
+  margin: 3px 0;
+  width: 100%;
+  background: rgba(183,28,28,0.6);
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:0.8rem;
+  padding:2px 0;
+  transition: all 0.3s;
+}
+#indexContainer button.active {
+  background: #b71c1c;
+}
+#indexContainer button:hover { background:#7f0000; }
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <h1>💖 Kelly Carolina Aristega Peñafiel 💖</h1>
+  <p>
+  Tu bonito, precioso e inteligente novio para nada te ha enviado esto, es un admirador secreto que sorprendentemente te conoce muy bien y que te ama muchísimo. Agradece que le comuniques su respuesta ante esto de alguna manera, ya descubrirás quién soy.<br><br>
+  Te amo mucho, Pelayo el que no es Pelayo &lt;3
+  </p>
+  <button onclick="startBook()">Entrar</button>
+</div>
+
+<div class="book">
+  <div id="page1" class="page">
+    <h1>💖 Razón #<span id="num">1</span></h1>
+    <p id="reason">Eres tu misma ✨</p>
+    <button onclick="nextReason()">💌 Ver otra</button>
+  </div>
+</div>
+
+<!-- Índice -->
+<div id="indexContainer"></div>
+
+<audio id="bgMusic" src="milo.mp3" loop></audio>
+
+<script>
+// Razones
+const reasons = [
+  "Tu sonrisa",
+  "Tu risa",
+  "Siempre piensas en mi",
+  "Me inspiras a ser mejor",
+  "Tus abrazos",
+  "Cada momento contigo es especial",
+  "Haces que mi corazón sera Rayo Mcqueen",
+  "Me completas",
+  "Tu voz",
+  "Eres preciosa",
+  "Aprecias cada pequeña cosa que hacemos",
+  "Tu empatía",
+  "Brillas cuando algo te gusta",
+  "Eres dulce",
+  "Todo lo que tocas lo haces mejor",
+  "Eres lo mas cercano a la perfección",
+  "Cuando estoy mal, me animas",
+  "Tus audios",
+  "Tu lealtad",
+  "Eres honesta",
+  "Tu sarcasmo",
+  "Pensamos lo mismo",
+  "Me escuchas",
+  "Te preocupas por mi",
+  "Piensas en un futuro conmigo",
+  "Me encanta tu olor es snifar felicidad",
+  "Eres guerrera",
+  "Tu carita",
+  "Me gusta que estés orgulloso de mi",
+  "Que hagas fotitos de cada momento juntos",
+  "Siempre quieres lo mejor para mi",
+  "Tu mal genio",
+  "Como dices amor",
+  "Escucharte como te fue el día",
+  "Eres protectora con los seres queridos",
+  "Nuestras bromas",
+  "Entendernos mentalmente",
+  "Entendernos físicamente",
+  "Siempre me haces reir",
+  "Eres divertida", 
+  "Me cuentas cotilleos",
+  "Me cuentas tus secretos",
+  "Eres muy inteligente",
+  "Te esfuerzas en todo",
+  "Podemos decirnos de todo sin riesgo a dejarnos",
+  "Siempre me echas de menos cuando trabajo",
+  "Me dices de vernos todos los días",
+  "Ser gym lovers",
+  "Tu nombre",
+  "Tus gustos musicales",
+  "Tus raices",
+  "Comer juntos",
+  "Tener planes para comer fuera o algo rico",
+  "Tus ojitos",
+  "Que seas dramática aunque quiera a veces darte una patada",
+  "Que seas lo último que recuerdo al dormir",
+  "Tu pelo sea corto o largo",
+  "Tus mofletitos de princhecha",
+  "Eres preciosa",
+  "Tu voz cuando hablas en público",
+  "Tu raro sentido del humor",
+  "Cuando estás nerviosa",
+  "Estás como Fernando Alonso, cañón",
+  "Quedarte conmigo aun sabiendo mi situación familiar",
+  "Aguantar mi actitud cuando estoy sin salida",
+  "Me calmas",
+  "Tu energía cuando estás motivada es envidable",
+  "Tus manitas",
+  "Darnos masajes",
+  "Ver peliculas juntos",
+  "Enseñarme cosas que no se de pelis o música",
+  "Aprender de ti cosas cotidianas",
+  "Como cocinas",
+  "Tus insultos",
+  "Celebrar mis trinfos y celebrar los tuyos",
+  "Que me mandes (no te flipes)",
+  "Como me dices te quiero",
+  "Y como me dices te amo",
+  "Tu creatividad",
+  "Nunca me juzgas",
+  "Piensa en nuestro dinero",
+  "Siempre en mi mente",
+  "Respetas mis gustos",
+  "Siempre piensa en nosotros cuando hace algo",
+  "Como hablas de mi",
+  "Ver cosas que me gustan por mi",
+  "Y hacer cosas que te gustan a ti",
+  "Lo bonita que eres cuando te hago un detalle",
+  "Tus piernas (suena raro)",
+  "Tu estilo de vestir",
+  "Mi espacio seguro",
+  "Mi mejor amiga",
+  "Siempre dices lo que piensas",
+  "Nunca me juzgas",
+  "Nunca se rinde",
+  "Tu personalidad",
+  "Siempre ayuda a todo el mundo sacrificandose ella",
+  "Respetas mis gustos",
+  "Me tratas como un rey",
+  "Que te dejes tratar como una reina",
+  "Tenemos el mismo interes el uno en el otro",
+  "Sentir que te sientes como eres conmigo",
+  "Crear momentos imposibles de olvidar",
+  "Hacerme reir en momentos tristes",
+  "Llorar juntos",
+  "Siempre tienes la razón (no te flipes jaja)",
+  "Tu cuerpazo dios mío",
+  "Siempre me regalas cosas",
+  "Celebrar cumples juntos",
+  "Viajar contigo y conocer cosas a tu lado",
+  "Eres una ratita",
+  "Sentir que me ha tocado la lotería contigo",
+  "Haces que un día oscuro le salga el sol",
+  "Tu fuerza mental",
+  "Mi alma gemela",
+  "Independencia",
+  "Siempre dar los mejores consejos",
+  "Acompañarte a todo para sentirme incluido en tu vida",
+  "Cuando te ves bonita me ves feliz, ves la realidad",
+  "Esperar el momento para tocarme los pililines",
+  "Tu capacidad de hacer tonterías en los momentos importantes",
+  "Eres preciosa",
+  "Hablar de todo sin tabues",
+  "Tus peditos de princesa",
+  "Eres todo",
+  "Ser tu primera opción",
+  "Presentarme a tu familia oficialmente aunque te costase",
+  "Ser el primer novio y quiero ser el último",
+  "Tus apellidos",
+  "Tu segundo nombre",
+  "Cuando me haces sorpresas",
+  "Tus labios",
+  "Tus pellizcos",
+  "Ver el atardecer juntos y pensar que estamos en una pelicula",
+  "Viste la mejor serie de la historia conmigo",
+  "Regalarte flores y que te brillen los ojos",
+  "Hacer realidad tus caprichos de nena",
+  "Hacer que el silencio no sea incómodo",
+  "Despertarme a tu lado y me insultes",
+  "Conversar serio cuando es necesario",
+  "Hacerme conocer la versión que no mucha gente ve",
+  "Trabajar juntos para crear un futuro bonito",
+  "Apoyarme con mi familia y economía",
+  "Sus enfados",
+  "Tu comida y tus postres",
+  "Amor verdadero",
+  "Hacerme creer que estaba equivocado y si existe el amor",
+  "Apoyarme aun sabiendo mi pasado con estudios y trabajos",
+  "Darnos los buenos días y buenas noches",
+  "Aun estando mal siempre ayudar a los demas y a mi",
+  "Estar locos el uno por el otro",
+  "Mi compañera de vida",
+  "Como bailas y cantas",
+  "Como eres capaz de salir adelante de todo",
+  "Te amo ya se me acaban las ideas",
+  "Calmar la tormenta con cualquier cosa que me digas",
+  "Me haces creer que soy fuerte e inteligente",
+  "Me tratas bien",
+  "Hacer que te sientas orgullosa de ti misma",
+];
+
+let index = 0;
+const reasonText = document.getElementById("reason");
+const numText = document.getElementById("num");
+
+// Transición simple
+function nextReason(){
+  reasonText.style.transition = "opacity 0.6s ease";
+  reasonText.style.opacity = 0;
+  setTimeout(()=>{
+    index = Math.floor(Math.random()*reasons.length);
+    reasonText.innerText = reasons[index];
+    numText.innerText = index+1;
+    updateActiveIndex();
+    reasonText.style.opacity = 1;
+  }, 600);
+}
+
+// Crear índice compacto
+const indexContainer = document.getElementById('indexContainer');
+const indexButtons = [];
+reasons.forEach((r,i)=>{
+  const btn = document.createElement('button');
+  btn.innerText = i+1;
+  btn.onclick = ()=>{
+    index = i;
+    reasonText.style.opacity=0;
+    setTimeout(()=>{
+      reasonText.innerText = reasons[index];
+      numText.innerText = index+1;
+      reasonText.style.opacity=1;
+      updateActiveIndex();
+    }, 300);
+  };
+  indexContainer.appendChild(btn);
+  indexButtons.push(btn);
+});
+
+function updateActiveIndex(){
+  indexButtons.forEach((btn,i)=>{
+    btn.classList.toggle('active', i===index);
+  });
+}
+
+// Fotos flotantes
+const images=[];
+for(let i=1;i<=39;i++){ images.push(`foto${i}.jpg`);}
+const photoData=[];
+const photosPerGroup=10; let currentGroup=0;
+
+function showGroup(groupIndex){
+  photoData.forEach(data => { data.img.style.opacity=0; setTimeout(()=>data.img.remove(),1000); });
+  photoData.length=0;
+  const start=groupIndex*photosPerGroup;
+  const end=Math.min(start+photosPerGroup,images.length);
+  for(let i=start;i<end;i++){
+    const img=document.createElement("img");
+    img.src=images[i];
+    img.className="floating-photo";
+    img.style.opacity=0;
+    document.body.appendChild(img);
+    const x=Math.random()*(window.innerWidth-150);
+    const y=Math.random()*(window.innerHeight-150)+50;
+    const speed=1+Math.random()*2;
+    photoData.push({img,x,y,speed,directionX:Math.random()<0.5?1:-1,directionY:Math.random()<0.5?1:-1,moving:true});
+    img.style.left=x+"px"; img.style.top=y+"px";
+    setTimeout(()=>{ img.style.opacity=1; },50);
+    img.addEventListener("click",()=>{ const data=photoData.find(d=>d.img===img); data.moving=!data.moving; });
+  }
+}
+showGroup(currentGroup);
+setInterval(()=>{ currentGroup=(currentGroup+1)%Math.ceil(images.length/photosPerGroup); showGroup(currentGroup); },10000);
+
+function animate(){
+  photoData.forEach(data=>{
+    if(data.moving){
+      data.x+=data.speed*data.directionX; if(data.x+150>window.innerWidth||data.x<0) data.directionX*=-1;
+      data.y+=data.speed*data.directionY; if(data.y+150>window.innerHeight||data.y<0) data.directionY*=-1;
+      data.img.style.left=data.x+"px"; data.img.style.top=data.y+"px";
+    }
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+window.addEventListener("resize",()=>{ photoData.forEach(data=>{ data.x=Math.min(data.x,window.innerWidth-150); data.y=Math.min(data.y,window.innerHeight-150); }); });
+
+// Iniciar libro y lluvia de emojis
+function startBook(){
+  const intro = document.getElementById('intro');
+  intro.style.opacity = 0;
+  setTimeout(()=>{ intro.style.display='none'; }, 800);
+  document.getElementById('bgMusic').play().catch(()=>{});
+
+  // Mostrar índice
+  indexContainer.style.display = 'block';
+  updateActiveIndex();
+
+  // Lluvia de emojis desde arriba
+  const emojis = ['🌸','💖','🌹','🦖','💗','🌺'];
+  setInterval(()=>{
+    const emoji = document.createElement('div');
+    emoji.className='emoji';
+    emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+    emoji.style.left = Math.random()*window.innerWidth+'px';
+    emoji.style.fontSize = (20+Math.random()*30)+'px';
+    emoji.style.top = '-50px'; 
+    emoji.style.animationDuration = (4+Math.random()*4)+'s';
+    document.body.appendChild(emoji);
+    setTimeout(()=>{ emoji.remove(); },8000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
